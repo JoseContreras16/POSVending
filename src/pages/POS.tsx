@@ -8,20 +8,24 @@ import {
   IonButton,
   IonItem,
   IonLabel,
-  IonAlert
+  IonToast
 } from '@ionic/react';
 import { useState } from 'react';
 import './POS.css';
 
 const POS: React.FC = () => {
   const [cash, setCash] = useState<number | undefined>();
-  const [showAlert, setShowAlert] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   const handleAccept = () => {
     if (!cash || cash <= 0) {
-      setShowAlert(true);
+      setToastMessage('Ingrese una cantidad válida mayor a 0.');
+      setShowToast(true);
     } else {
       console.log('Cash accepted:', cash);
+      setToastMessage(`Efectivo aceptado: $${cash.toFixed(2)}`);
+      setShowToast(true);
       // Aquí puedes continuar con la lógica del POS
     }
   };
@@ -30,21 +34,20 @@ const POS: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>POS</IonTitle>
+          <IonTitle>Punto de Venta</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className="cash-form-container">
-          <IonItem className="cash-item">
+          <IonItem className="cash-item" lines="none">
             <IonLabel position="floating" className="cash-label">Ingrese el efectivo</IonLabel>
-            <br></br>
+            <br />
             <IonInput
               type="number"
               value={cash}
               onIonChange={(e) => setCash(parseFloat(e.detail.value!))}
               placeholder="Ej. 100.00"
               className="cash-input"
-              
             />
           </IonItem>
           <IonButton expand="block" onClick={handleAccept}>
@@ -52,12 +55,12 @@ const POS: React.FC = () => {
           </IonButton>
         </div>
 
-        <IonAlert
-          isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
-          header="Error"
-          message="Ingrese una cantidad válida mayor a 0."
-          buttons={['OK']}
+        <IonToast
+          isOpen={showToast}
+          onDidDismiss={() => setShowToast(false)}
+          message={toastMessage}
+          duration={2000}
+          color={cash && cash > 0 ? 'success' : 'danger'}
         />
       </IonContent>
     </IonPage>
