@@ -1,0 +1,33 @@
+.cash-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  gap: 16px;
+  background-color: #f4f4f4; /* puedes cambiar esto si tienes otro fondo */
+}
+
+.cash-item {
+  width: 100%;
+  max-width: 300px;
+  background: #ffffffdd; /* fondo claro semitransparente */
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cash-label {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.cash-input {
+  font-size: 1.2rem;
+  color: #111;
+  padding: 10px 0;
+}
+
+
