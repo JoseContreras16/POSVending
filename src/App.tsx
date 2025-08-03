@@ -10,10 +10,10 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle, cash, settings } from 'ionicons/icons';
+import { cash, settings, barChart } from 'ionicons/icons';
 import POS from './pages/POS';
 import Setting from './pages/Setting';
-import Tab3 from './pages/Tab3';
+import Sells from './pages/Sells';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -58,8 +58,8 @@ const App: React.FC = () => (
           <Route exact path="/Setting">
             <Setting />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/Sells">
+            <Sells />
           </Route>
           <Route exact path="/">
             <Redirect to="/POS" />
@@ -74,9 +74,9 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={settings} />
             <IonLabel>Setting</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="Sells" href="/Sells">
+            <IonIcon aria-hidden="true" icon={barChart} />
+            <IonLabel>Sells</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
