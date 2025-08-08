@@ -40,7 +40,7 @@ const POS: React.FC = () => {
   // 🔄 POST al backend para guardar un ingreso
   const sendToBackend = async (amount: number): Promise<boolean> => {
     try {
-      const response = await fetch('http://localhost:8000/vending', {
+      const response = await fetch('https://smartloansbackend.azurewebsites.net/vending', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const POS: React.FC = () => {
   // 🔄 GET al backend para obtener todos los ingresos
   const fetchAllVending = async () => {
     try {
-      const response = await fetch('http://localhost:8000/all_vending');
+      const response = await fetch('https://smartloansbackend.azurewebsites.net/all_vending');
       if (!response.ok) {
         throw new Error(`Error al obtener datos del backend: ${response.status}`);
       }
@@ -151,6 +151,8 @@ const POS: React.FC = () => {
             <IonCol sizeMd="6" sizeLg="4" sizeXs="12">
               <IonItem className="cash-item" lines="none">
                 <IonLabel position="floating" className="cash-label">Ingrese el efectivo</IonLabel>
+                  <br></br>
+
                 <IonInput
                   type="number"
                   value={cash}
