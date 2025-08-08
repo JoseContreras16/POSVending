@@ -69,24 +69,41 @@ const POS: React.FC = () => {
       return false;
     }
   };
-
-  // 🔄 GET al backend para obtener todos los ingresos
-  const fetchAllVending = async () => {
-    try {
-      const response = await fetch('https://smartloansbackend.azurewebsites.net/all_vending');
-      if (!response.ok) {
-        throw new Error(`Error al obtener datos del backend: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Datos desde /all_vending:', data);
-      setAllVending(data.vending || []);
-    } catch (error) {
-      console.error(error);
-      setToastMessage('Error al obtener ingresos del backend.');
-      setShowToast(true);
+const fetchAllVending = async () => {
+  try {
+    const response = await fetch('https://smartloansbackend.azurewebsites.net/all_vending');
+    if (!response.ok) {
+      throw new Error(`Error al obtener datos del backend: ${response.status}`);
     }
-  };
+
+    const data = await response.json();
+    console.log('Datos desde /all_vending:', data);
+
+    let vendingData = data.vending;
+
+    // Si el backend devuelve una cadena, intentar convertirla a arreglo
+    if (typeof vendingData === 'string') {
+      try {
+        vendingData = JSON.parse(vendingData);
+      } catch (error) {
+        vendingData = [];
+      }
+    }
+
+    // Validar que sea un arreglo antes de asignar
+    if (Array.isArray(vendingData)) {
+      setAllVending(vendingData);
+    } else {
+      setAllVending([]); // Seguridad ante estructura incorrecta
+    }
+
+  } catch (error) {
+    console.error(error);
+    setToastMessage('Error al obtener ingresos del backend.');
+    setShowToast(true);
+  }
+};
+
 
   // 📦 Cargar ingresos al iniciar
   useEffect(() => {
@@ -190,25 +207,34 @@ const POS: React.FC = () => {
             </IonCol>
           </IonRow>
 
-          {/* Lista desde el backend */}
-          <IonRow className="ion-justify-content-center ion-margin-top">
-            <IonCol sizeMd="6" sizeLg="4" sizeXs="12">
-              <IonList className="backend-list">
-                <IonCard>
-                  <IonCardHeader>
-                    <IonCardSubtitle>💾 Actividad</IonCardSubtitle>
-                  </IonCardHeader>
-                </IonCard>
-                {allVending.map((item, index) => (
-                  <IonCard key={index}>
-                    <IonCardContent>
-                      Ingreso registrado: ${item.ingreso.toFixed(2)}
-                    </IonCardContent>
-                  </IonCard>
-                ))}
-              </IonList>
-            </IonCol>
-          </IonRow>
+         {/* Lista desde el backend */}
+<IonRow className="ion-justify-content-center ion-margin-top">
+  <IonCol sizeMd="6" sizeLg="4" sizeXs="12">
+    <IonList className="backend-list">
+      <IonCard>
+        <IonCardHeader>
+          <IonCardSubtitle>💾 Actividad</IonCardSubtitle>
+        </IonCardHeader>
+      </IonCard>
+      {allVending.length === 0 ? (
+        <IonCard>
+          <IonCardContent className="ion-text-center">
+            🚫 Sin actividad
+          </IonCardContent>
+        </IonCard>
+      ) : (
+        allVending.map((item, index) => (
+          <IonCard key={index}>
+            <IonCardContent>
+              Ingreso registrado: ${item.ingreso.toFixed(2)}
+            </IonCardContent>
+          </IonCard>
+        ))
+      )}
+    </IonList>
+  </IonCol>
+</IonRow>
+
         </IonGrid>
 
         {/* Toast de mensajes */}
