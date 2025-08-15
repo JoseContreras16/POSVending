@@ -94,7 +94,7 @@ const fetchAllVending = async () => {
     if (Array.isArray(vendingData)) {
       setAllVending(vendingData);
     } else {
-      setAllVending([]); // Seguridad ante estructura incorrecta
+      setAllVending([]); 
     }
 
   } catch (error) {
