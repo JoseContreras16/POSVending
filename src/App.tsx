@@ -10,11 +10,12 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { cash, settings, barChart } from 'ionicons/icons';
+import { cash, settings, barChart, shirt, qrCode } from 'ionicons/icons';
 import POS from './pages/POS';
 import Setting from './pages/Setting';
 import Sells from './pages/Sells';
-
+import Laundry from './pages/Laundry'; // 👈 Importamos tu nueva página
+import ScannerQR from './pages/ScannerQR';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -61,15 +62,25 @@ const App: React.FC = () => (
           <Route path="/Sells">
             <Sells />
           </Route>
+          <Route path="/Laundry">
+            <Laundry />
+          </Route>
+          <Route path="/ScannerQR">
+            <ScannerQR />
+          </Route>
           <Route exact path="/">
             <Redirect to="/POS" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="POS" href="/POS">
-            <IonIcon aria-hidden="true" icon={cash} />
-            <IonLabel>POS</IonLabel>
-          </IonTabButton>
+        <IonTabButton tab="Laundry" href="/Laundry">
+              <IonIcon aria-hidden="true" icon={shirt} />
+              <IonLabel>Laundry</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="ScannerQR" href="/ScannerQR">
+              <IonIcon aria-hidden="true" icon={qrCode} />
+              <IonLabel>Lector QR</IonLabel>
+        </IonTabButton>
           <IonTabButton tab="Setting" href="/Setting">
             <IonIcon aria-hidden="true" icon={settings} />
             <IonLabel>Setting</IonLabel>
@@ -77,6 +88,10 @@ const App: React.FC = () => (
           <IonTabButton tab="Sells" href="/Sells">
             <IonIcon aria-hidden="true" icon={barChart} />
             <IonLabel>Sells</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="POS" href="/POS">
+            <IonIcon aria-hidden="true" icon={cash} />
+            <IonLabel>Vending POS</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
