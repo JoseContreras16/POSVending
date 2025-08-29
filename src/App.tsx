@@ -75,7 +75,7 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
         <IonTabButton tab="Laundry" href="/Laundry">
               <IonIcon aria-hidden="true" icon={shirt} />
-              <IonLabel>Laundry</IonLabel>
+              <IonLabel>Laundri</IonLabel>
         </IonTabButton>
         <IonTabButton tab="ScannerQR" href="/ScannerQR">
               <IonIcon aria-hidden="true" icon={qrCode} />
