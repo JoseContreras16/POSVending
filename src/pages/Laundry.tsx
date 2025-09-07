@@ -13,6 +13,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonPage,
 } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import './Laundry.css';
@@ -135,7 +136,7 @@ const Laundry: React.FC = () => {
   };
 
   return (
-    <>
+    <><IonPage>
       <IonContent fullscreen>
        
 
@@ -247,6 +248,7 @@ const Laundry: React.FC = () => {
           color={toastMessage.includes('Error') ? 'danger' : 'success'}
         />
       </IonContent>
+      </IonPage>
     </>
   );
 };
