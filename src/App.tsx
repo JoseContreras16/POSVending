@@ -97,11 +97,12 @@ const App: React.FC = () => {
 
   const dismissMailPopover = () => setPopoverState({ ...popoverState, showMailPopover: false });
 
+
   return (
     <IonApp>
       <IonReactRouter>
-        <IonPage id="main-content">
-          <Header presentAlertPopover={presentAlertPopover} presentMailPopover={presentMailPopover} handleLogout={handleLogout} />
+        <Header presentAlertPopover={presentAlertPopover} presentMailPopover={presentMailPopover} handleLogout={handleLogout} />
+          
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/POS">
@@ -120,7 +121,7 @@ const App: React.FC = () => {
                 <ScannerQR />
               </Route>
               <Route exact path="/">
-                <Redirect to="/POS" />
+                <Redirect to="/Laundry" />
               </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
@@ -146,7 +147,7 @@ const App: React.FC = () => {
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
-        </IonPage>
+        
       </IonReactRouter>
     </IonApp>
   );
