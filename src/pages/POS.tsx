@@ -142,7 +142,7 @@ const fetchAllVending = async () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Punto de Venta</IonTitle>
+          <IonTitle className="ion-text-center">Punto de Venta</IonTitle>
         </IonToolbar>
       </IonHeader>
 
