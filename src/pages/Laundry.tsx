@@ -139,15 +139,15 @@ import {
       return allLaundry.reduce((sum, item) => sum + item.ingreso, 0);
     };
   
-    return (
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Lavandería</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-  
-        <IonContent fullscreen>
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle className='time-text'>Lavanderia</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent fullscreen>
           <IonGrid className="ion-padding">
   
             {/* 🔢 Total de ingresos lavandería */}
